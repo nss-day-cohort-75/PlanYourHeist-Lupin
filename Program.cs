@@ -45,6 +45,15 @@ while (true)
     Console.WriteLine("Enter the number of trial runs");
     int trials = int.Parse(Console.ReadLine().Trim());
 
+    for (int i = 0; i < team.Count(); i++) {
+        if ((team[i].SkillLevel * team[i].CourageFactor) < bankDifficulty) {
+
+            Console.WriteLine($"{team[i].Name} chickened out");
+
+            team.Remove(team[i]);
+        }
+    }
+
     int teamLVL = team.Sum(member => member.SkillLevel);
     Console.WriteLine($"Team's combined Skill level:{teamLVL}");
     Console.WriteLine($"Bank's difficulty level: {bankDifficulty}");
