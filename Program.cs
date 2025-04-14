@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Net;
 using System.Reflection.Metadata.Ecma335;
@@ -35,16 +36,31 @@ while (true)
 
     Console.WriteLine($"The team member's Name is {member.Name}. Their skill level is {member.SkillLevel}. Their courage factor is {member.CourageFactor}.");
     team.Add(member);
+
+
 }
 
-int teamLVL = team.Sum(member => member.SkillLevel);
-Console.WriteLine($"Team's combined Skill level:{teamLVL}");
-Console.WriteLine($"Bank's difficulty level: {bankDifficulty}");
-if (teamLVL >= bankDifficulty + luckValue)
-{
-    Console.WriteLine("Heist success!");
+    Console.WriteLine("Enter the number of trial runs");
+    int trials = int.Parse(Console.ReadLine().Trim());
+
+    int teamLVL = team.Sum(member => member.SkillLevel);
+    Console.WriteLine($"Team's combined Skill level:{teamLVL}");
+    Console.WriteLine($"Bank's difficulty level: {bankDifficulty}");
+
+while(trials > 0){
+
+    luckValue = random.Next(-10, 11);
+
+    if (teamLVL >= bankDifficulty + luckValue)
+    {
+        Console.WriteLine("Heist success!");
+    }
+    else
+    {
+        Console.WriteLine("Heist failed...");
+    }
+
+    trials--;
+
 }
-else
-{
-    Console.WriteLine("Heist failed...");
-}
+
