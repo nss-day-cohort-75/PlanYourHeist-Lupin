@@ -1,13 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Linq.Expressions;
+using System.Net;
 using System.Reflection.Metadata.Ecma335;
+
+List <Member> team = new List<Member>();
 
 Console.WriteLine("Plan Your Heist!");
 
+while(true){
 Member member = new Member();
 
 Console.WriteLine("Enter a team member's name:");
-member.Name = Console.ReadLine();
+string name = Console.ReadLine().Trim();
+if(string.IsNullOrEmpty(name)) { break; }
+member.Name = name;
 
 Console.WriteLine("Please enter a Skill level:");
 member.SkillLevel = int.Parse(Console.ReadLine());
@@ -23,3 +29,14 @@ member.CourageFactor = courage;
 
 
 Console.WriteLine($"The team member's Name is {member.Name}. Their skill level is {member.SkillLevel}. Their courage factor is {member.CourageFactor}.");
+team.Add(member);
+}
+
+Console.WriteLine($"The team consists of {team.Count} members");
+foreach(Member member in team){
+    Console.WriteLine(
+@$"Name: {member.Name}
+Skill Level: {member.SkillLevel}
+Courage Factor: {member.CourageFactor}
+");
+}
