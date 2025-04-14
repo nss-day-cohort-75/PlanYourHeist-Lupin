@@ -5,6 +5,8 @@ using System.Reflection.Metadata.Ecma335;
 
 List <Member> team = new List<Member>();
 
+int bankDifficulty = 100;
+
 Console.WriteLine("Plan Your Heist!");
 
 while(true){
@@ -32,11 +34,10 @@ Console.WriteLine($"The team member's Name is {member.Name}. Their skill level i
 team.Add(member);
 }
 
-Console.WriteLine($"The team consists of {team.Count} members");
-foreach(Member member in team){
-    Console.WriteLine(
-@$"Name: {member.Name}
-Skill Level: {member.SkillLevel}
-Courage Factor: {member.CourageFactor}
-");
+int teamLVL = team.Sum(member => member.SkillLevel);
+
+if (teamLVL >= bankDifficulty) {
+    Console.WriteLine("Heist success!")
+} else {
+    Console.WriteLine("Heist failed...")
 }
